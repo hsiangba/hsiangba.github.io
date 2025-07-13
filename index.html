@@ -28,6 +28,22 @@
         // 標點測試
         var marker = L.marker([51.5, -0.09]).addTo(map)
             marker.bindPopup("<b>我是一個彈出視窗</b><br>這是一個點.").openPopup();
+        
+        L.TileLayer.sanyo = L.TileLayer.extend({
+        getTileUrl: function(coords) {
+        var i = Math.ceil( Math.random() * 4 );
+        return "https://github.com/hsiangba/hsiangba.github.io/blob/main/Frame%203.png=" + i;
+    },
+    getAttribution: function() {
+        return "<a href='https://github.com/hsiangba/hsiangba.github.io/blob/main/Frame%203.png'>Sanyo</a>"
+    }
+});
+
+L.tileLayer.sanyo = function() {
+    return new L.TileLayer.sanyo();
+}
+
+L.tileLayer.sanyo().addTo(map);
 
     </script>
 </body>
