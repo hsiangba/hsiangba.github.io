@@ -35,6 +35,8 @@
         // 自動調整地圖視角到圖片邊界
         map.fitBounds(imageBounds);
         // 標點測試
+        var marker = L.marker([0,0]).addTo(map)
+            marker.bindPopup("<b>座標0點</b><br>方便我進行開發用的定位點 實際上在遊戲地圖裡這裡什麼也沒有.").openPopup();
         var marker = L.marker([716,813]).addTo(map)
             marker.bindPopup("<b>三洋島</b><br>位在東杏南方，充滿著南洋風情的觀光小島.").openPopup();
         var marker = L.marker([472, 737]).addTo(map)
