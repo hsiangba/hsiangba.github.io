@@ -18,7 +18,7 @@
     <div id="map"></div>
     <script>
         // 初始化地圖，設定邊界為圖片範圍
-        var imageBounds = [[0, 0], [1705, 1720]]; // 根據圖片實際像素尺寸設定（示例用 1000x1000）
+        var imageBounds = [[0, 0], [1720, 1705]]; // 根據圖片實際像素尺寸設定（示例用 1000x1000）
 
         var map = L.map('map', {
             crs: L.CRS.Simple, // 使用簡單坐標系，不套用經緯度
@@ -37,13 +37,13 @@
         // 標點測試
         var marker = L.marker([0,0]).addTo(map)
             marker.bindPopup("<b>座標0點</b><br>方便我進行開發用的定位點 實際上在遊戲地圖裡這裡什麼也沒有.").openPopup();
-        var marker = L.marker([716,813]).addTo(map)
+        var marker = L.marker([1720-716,1705-813]).addTo(map)
             marker.bindPopup("<b>三洋島</b><br>位在東杏南方，充滿著南洋風情的觀光小島.").openPopup();
-        var marker = L.marker([472, 737]).addTo(map)
+        var marker = L.marker([1720-472,1705-737]).addTo(map)
             marker.bindPopup("<b>難波津島</b><br>三洋島北邊的礁嶼.").openPopup();
-        var marker = L.marker([1064, 953]).addTo(map)
+        var marker = L.marker([1720-1064,1705-953]).addTo(map)
             marker.bindPopup("<b>難波万島</b><br>三洋島南邊的礁嶼.").openPopup();
-        var marker = L.marker([821, 1160]).addTo(map)
+        var marker = L.marker([1720-821,1705-1160]).addTo(map)
             marker.bindPopup("<b>三洋島難波空港</b><br>ICAO代號TKSY，為三洋島上唯一的機場，可供中小型螺槳飛機(諸如ATR72或是Dash-8)起降，作為東杏唯幾的地方觀光空港，每週三班航機來回東杏本島，目前只有由東杏航空進駐.").openPopup();
         
 
