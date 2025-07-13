@@ -24,11 +24,11 @@
         L.TileLayer.sanyo = L.TileLayer.extend({
         getTileUrl: function(coords) {
         var i = Math.ceil( Math.random() * 4 );
-        return "https://github.com/hsiangba/hsiangba.github.io/blob/main/Frame%203.png=" + i;
+        return "https://raw.githubusercontent.com/hsiangba/hsiangba.github.io/refs/heads/main/Frame%203.png=" + i;
         },
         getAttribution: function() 
             {
-            return "<a href='https://github.com/hsiangba/hsiangba.github.io/blob/main/Frame%203.png'>Sanyo</a>"
+            return "<a href='https://raw.githubusercontent.com/hsiangba/hsiangba.github.io/refs/heads/main/Frame%203.png'>Sanyo</a>"
             }
         });
 
