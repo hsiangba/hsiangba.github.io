@@ -22,7 +22,7 @@
 
         // 實驗地圖
         L.TileLayer.sanyo = L.TileLayer.extend({
-        getTileUrl: "https://raw.githubusercontent.com/hsiangba/hsiangba.github.io/refs/heads/main/Frame%203.png" ;
+        getTileUrl: function(coords) {"https://raw.githubusercontent.com/hsiangba/hsiangba.github.io/refs/heads/main/Frame%203.png" ;
         },
         getAttribution: function() 
             {
