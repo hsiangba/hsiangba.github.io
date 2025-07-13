@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hello your fucking world</title>
-	<meta charset="utf-8" />
+    <title>地圖檢視器</title>
+    <meta charset="utf-8" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""/>
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-     crossorigin=""></script>
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    <style>
+        /* 加入 map 容器的大小樣式 */
+        #map {
+            height: 100vh; /* 覆蓋整個視窗高度 */
+            width: 100vw;  /* 覆蓋整個視窗寬度 */
+        }
+    </style>
 </head>
 <body>
     <div id="map"></div>
+    <script>
+        // 初始化地圖
+        var map = L.map('map').setView([25.0330, 121.5654], 13); // 台北市中心為例
+
+        // 加入 OpenStreetMap 圖磚圖層
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+    </script>
 </body>
 </html>
