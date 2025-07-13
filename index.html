@@ -26,7 +26,8 @@
         }).addTo(map);
         
         // 標點測試
-        var marker = L.marker([51.5, -0.09]).addTo(map);
+        var marker = L.marker([51.5, -0.09]).addTo(map)
+            marker.bindPopup("<b>我是一個彈出視窗</b><br>這是一個點.").openPopup();
 
     </script>
 </body>
