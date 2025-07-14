@@ -11,17 +11,23 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
-<div class="container">
-  <h2>每次進站顯示一次就好的彈跳視窗</h2>
-    <div>利用sessionStorage，紀錄使用者是否看過彈跳視窗，優點如下</div>  
-  <ul>
-    <li>可以比較省主機資源 (不用吃到server的記憶體)</li>
-    <li>可以跟localStorage混搭，讓使用者想要永遠不顯示也可以</li>
-  </ul>
-<a href="#" class="btn btn-default" onclick="show()" onkeypress="show()">想再跳出視窗請按這邊</a>
 
-  <!-- Modal -->
-    <script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        html, body, #map {
+            height: 100%;
+            width: 100vw;
+        }
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    </style>
+</head>
+     <!-- Modal -->
+
+    <div class="modal fade" id="myModal" role="dialog">
+         <script>
         $(document).ready(function(){
     var valueNum = window.sessionStorage.userdata;
     if (valueNum != "1") {
@@ -35,9 +41,6 @@
     window.sessionStorage.userdata = "0";
     $("#myModal").modal();
   }
-
-    </script>
-    <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
           <!-- Modal content-->
       <div class="modal-content">
@@ -47,7 +50,6 @@
         </div>
         <div class="modal-body">
           <p>1. 服務內容
-
 1.1 本網站提供的服務包括但不限於商品的在線瀏覽、購買、付款、配送、售後服務等。
 
 2. 用戶資格
@@ -84,19 +86,6 @@
   </div>
   
 </div>
-
-    <style>
-        body {
-            padding: 0;
-            margin: 0;
-        }
-        html, body, #map {
-            height: 100%;
-            width: 100vw;
-        }
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    </style>
-</head>
 <body>
     <div id="map" ></div>
     <script>
