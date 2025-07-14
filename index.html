@@ -11,6 +11,79 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
+<div class="container">
+  <h2>每次進站顯示一次就好的彈跳視窗</h2>
+    <div>利用sessionStorage，紀錄使用者是否看過彈跳視窗，優點如下</div>  
+  <ul>
+    <li>可以比較省主機資源 (不用吃到server的記憶體)</li>
+    <li>可以跟localStorage混搭，讓使用者想要永遠不顯示也可以</li>
+  </ul>
+<a href="#" class="btn btn-default" onclick="show()" onkeypress="show()">想再跳出視窗請按這邊</a>
+
+  <!-- Modal -->
+    <script>
+        $(document).ready(function(){
+    var valueNum = window.sessionStorage.userdata;
+    if (valueNum != "1") {
+      $("#myModal").modal();
+    }
+});
+  function cancel(){
+    window.sessionStorage.userdata = "1";
+  }
+  function show(){
+    window.sessionStorage.userdata = "0";
+    $("#myModal").modal();
+  }
+
+    </script>
+    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+          <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">服務條款</h4>
+        </div>
+        <div class="modal-body">
+          <p>1. 服務內容
+
+1.1 本網站提供的服務包括但不限於商品的在線瀏覽、購買、付款、配送、售後服務等。
+
+2. 用戶資格
+
+** 使用本網站服務的用戶必須具備完全的民事行為能力。若用戶為未成年人，需在其監護人指導下使用本網站。
+
+3. 隱私保護
+
+3.1 本網站為非營利性網站，且我們重視用戶個人資料之隱私安全，本網站不會使用任何用戶相關資料，也不會要求任何用戶個人資料。
+
+4. 知識產權
+
+4.1 本網站及其所使用的所有內容（包括但不限於文字、圖像、音頻、視頻等）均受著作權、商標權及其他相關法律的保護。
+
+5. 責任限制
+
+5.1 本網站對因不可抗力或其他非本網站過錯原因造成的服務中斷或損失不承擔責任。
+
+6. 條款修改
+
+6.1 本網站有權根據需要修改本條款，修改後的條款將在本網站公佈。用戶繼續使用本網站即視為接受修改後的條款。
+
+7. 其他
+
+7.1 本條款的解釋、效力及糾紛解決均適用中華民國之法律。
+
+7.2 若本條款的任何條款被視為無效或不可執行，該條款應在必要的最低限度內被修改或刪除，且不影響其他條款的有效性和可執行性。</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cancel()" onkeypress="cancel()">同意，繼續使用</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
 
     <style>
         body {
