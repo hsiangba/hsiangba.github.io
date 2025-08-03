@@ -59,11 +59,11 @@
         var nanbatsu=xy(713,1705-473);
         var nanbawan=xy(953,1705-1064);
         var tksy=xy(1187,1705-881);
-        L.marker(zero).addTo(map).bindPopup('<b>座標0</b>');
-        L.marker(sanyoshima).addTo(map).bindPopup('<b>三洋島</b>');
-        L.marker(nanbatsu).addTo(map).bindPopup('<b>難波津島</b>');
-        L.marker(nanbawan).addTo(map).bindPopup('<b>難波万島</b>');
-        L.marker(tksy).addTo(map).bindPopup('<b>三洋島難波空港</b>');
+        addTextMarker(zero).addTo(map).bindPopup('<b>座標0</b>');
+        addTextMarker(sanyoshima).addTo(map).bindPopup('<b>三洋島</b>');
+        addTextMarker(nanbatsu).addTo(map).bindPopup('<b>難波津島</b>');
+        addTextMarker(nanbawan).addTo(map).bindPopup('<b>難波万島</b>');
+        addTextMarker(tksy).addTo(map).bindPopup('<b>三洋島難波空港</b>');
 
 var travel = L.polyline([sol, deneb]).addTo(map);
         
@@ -72,3 +72,4 @@ var travel = L.polyline([sol, deneb]).addTo(map);
     </script>
 </body>
 </html>
+
