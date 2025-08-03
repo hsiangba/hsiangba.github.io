@@ -12,14 +12,34 @@
             margin: 0;
         }
 
-        .dot-only {
+        .label-dot-wrapper {
+            position: relative;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .label-dot-wrapper .label-text {
+            font-size: 13px;
+            font-weight: 500;
+            color: #444;
+            text-align: center;
+            margin-bottom: 2px;
+            text-shadow:
+                -1px -1px 0 #fff,
+                 1px -1px 0 #fff,
+                -1px  1px 0 #fff,
+                 1px  1px 0 #fff;
+        }
+
+        .label-dot-wrapper .dot {
             width: 6px;
             height: 6px;
             background-color: #666;
             border: 2px solid white;
             border-radius: 50%;
             box-shadow: 0 0 2px #00000055;
-            transform: translate(-50%, -50%);
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -45,29 +65,36 @@
 
     map.fitBounds(imageBounds);
 
-    function addDotMarker(position) {
-        var dotIcon = L.divIcon({
-            className: '',
-            html: `<div class="dot-only"></div>`,
+    function addLabelDotMarker(position, label) {
+        var html = `
+            <div class="label-dot-wrapper">
+                <div class="label-text">${label}</div>
+                <div class="dot"></div>
+            </div>
+        `;
+        var icon = L.divIcon({
+            html: html,
             iconSize: null,
-            iconAnchor: [0, 0]  // 配合 translate(-50%, -50%) 使圓點中心對齊座標
+            iconAnchor: [0, 0] // 配合 transform: translate(-50%, -50%)，使「圓點中心」對準座標
         });
-        L.marker(position, { icon: dotIcon }).addTo(map);
+        L.marker(position, { icon: icon }).addTo(map);
     }
 
-    // 
+    // ✅ 這些是你原本的座標
     var zero = xy(0, 0);
     var sanyoshima = xy(813, 1705 - 716);
     var nanbatsu = xy(713, 1705 - 473);
     var nanbawan = xy(953, 1705 - 1064);
     var tksy = xy(1187, 1705 - 881);
 
-    // 
-    addDotMarker(zero);
-    addDotMarker(sanyoshima);
-    addDotMarker(nanbatsu);
-    addDotMarker(nanbawan);
-    addDotMarker(tksy);
+    // ✅ 顯示圓點與地名（圓點為中心）
+    addLabelDotMarker(zero, '座標0');
+    addLabelDotMarker(sanyoshima, '三洋島');
+    addLabelDotMarker(nanbatsu, '難波津島');
+    addLabelDotMarker(nanbawan, '難波万島');
+    addLabelDotMarker(tksy, '三洋島難波空港');
 </script>
 </body>
 </html>
+
+
