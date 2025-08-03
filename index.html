@@ -72,7 +72,7 @@
       z-index: 1000;
     }
 
-    #info-panel.visible {
+    #info-panel.visible{
       transform: translateX(0);
     }
 
@@ -96,6 +96,10 @@
   </div>
 
   <script>
+    console.log('目前 zoom:', map.getZoom());
+zoomControlledMarkers.forEach(entry => {
+  console.log(entry.marker, entry.minZoom, entry.maxZoom);
+});
     var yx = L.latLng;
     var xy = function (x, y) {
       if (Array.isArray(x)) return yx(x[1], x[0]);
@@ -176,3 +180,4 @@
   </script>
 </body>
 </html>
+
