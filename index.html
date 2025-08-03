@@ -32,7 +32,7 @@
             text-align: center;
             white-space: nowrap;
             pointer-events: auto;
-            transform: translate(-50%, -100%);
+            transform: translate(-50%, -100%); /* 座標指向圓點中心 */
             text-shadow:
                 -1px -1px 0 #fff,
                  1px -1px 0 #fff,
@@ -42,7 +42,7 @@
         }
 
         .text-label:hover {
-            color: #d00;
+            color: #222;
         }
 
         .text-label::after {
@@ -51,10 +51,10 @@
             width: 6px;
             height: 6px;
             margin: 4px auto 0 auto;
-            background-color: #d00;
+            background-color: #666; /* 灰色圓點 */
             border: 2px solid white;
             border-radius: 50%;
-            box-shadow: 0 0 2px #00000088;
+            box-shadow: 0 0 2px #00000055;
         }
     </style>
 </head>
@@ -87,7 +87,7 @@
                 className: 'text-label',
                 html: `<div>${text}</div>`,
                 iconSize: null,
-                iconAnchor: [0, 0]
+                iconAnchor: [0, 0]  // 座標從左上，但 transform 修正為圓點中心
             });
             L.marker(position, { icon: textIcon }).addTo(map);
         }
