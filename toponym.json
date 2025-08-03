@@ -14,8 +14,8 @@
     "x": 713,
     "y": 1232,
     "description": "就是個島礁。"
-    "minZoom":null,
-    "maxZoom": 9
+    "minZoom":5,
+    "maxZoom":9
   },
   {
     "name_zh": "難波万島",
@@ -23,8 +23,8 @@
     "x": 953,
     "y": 641,
     "description": "就是個島礁。"
-    "minZoom":null,
-    "maxZoom": 9
+    "minZoom":5,
+    "maxZoom":9
   },
   {
     "name_zh": "三洋島難波空港",
@@ -32,7 +32,7 @@
     "x": 1187,
     "y": 824,
     "description": "整個三洋群島唯一的機場，一天有兩班來回東杏本島的航班。"
-    "minZoom":null,
-    "maxZoom": 8
+    "minZoom":5,
+    "maxZoom":8
   }
 ]
