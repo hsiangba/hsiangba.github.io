@@ -28,7 +28,6 @@
     .label-dot-wrapper:hover {
       transform: translate(-50%, -60%);
     }
-    console.log("初始 zoom:", map.getZoom());
 
     .label-text {
       font-size: 13px;
@@ -73,7 +72,7 @@
       z-index: 1000;
     }
 
-    #info-panel.visible{
+    #info-panel.visible {
       transform: translateX(0);
     }
 
@@ -87,17 +86,29 @@
       font-size: 14px;
       line-height: 1.5;
     }
+
+    #zoom-indicator {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      background: rgba(255,255,255,0.8);
+      padding: 4px 8px;
+      font-size: 12px;
+      border-radius: 4px;
+      box-shadow: 0 0 4px rgba(0,0,0,0.2);
+      z-index: 1001;
+    }
   </style>
 </head>
 <body>
   <div id="map"></div>
+  <div id="zoom-indicator">Zoom: -</div>
   <div id="info-panel">
     <div id="info-title">地名</div>
     <div id="info-description">點擊圓點以查看詳細資訊</div>
   </div>
 
   <script>
-
     var yx = L.latLng;
     var xy = function (x, y) {
       if (Array.isArray(x)) return yx(x[1], x[0]);
@@ -150,11 +161,12 @@
 
     function updateMarkerVisibility() {
       const currentZoom = map.getZoom();
+      document.getElementById('zoom-indicator').textContent = "Zoom: " + currentZoom;
       zoomControlledMarkers.forEach(entry => {
         const el = entry.marker.getElement();
         if (!el) return;
         const show = currentZoom >= entry.minZoom && currentZoom <= entry.maxZoom;
-        el.style.display = show ? 'block':'none';
+        el.style.display = show ? 'block' : 'none';
       });
     }
 
@@ -178,8 +190,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
