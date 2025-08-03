@@ -115,7 +115,9 @@
 
     map.fitBounds(imageBounds);
 
-    function addLabelDotMarker(position, label, description) {
+    const zoomControlledMarkers = [];
+
+    function addLabelDotMarker(position, label, description, minZoom, maxZoom) {
       var html = `
         <div class="label-dot-wrapper">
           <div class="label-text">${label}</div>
@@ -127,10 +129,11 @@
         iconSize: null,
         iconAnchor: [0, 0]
       });
+
       const marker = L.marker(position, { icon: icon }).addTo(map);
-      marker.on('click', function () {
-        showInfoPanel(label, description);
-      });
+      marker.on('click', () => showInfoPanel(label, description));
+
+      zoomControlledMarkers.push({ marker, minZoom, maxZoom });
     }
 
     function showInfoPanel(title, description) {
@@ -143,16 +146,33 @@
       document.getElementById('info-panel').classList.remove('visible');
     });
 
-    // 載入 JSON 並建立地標
-    fetch('https://hsiangba.github.io/toponym.json')
+    function updateMarkerVisibility() {
+      const currentZoom = map.getZoom();
+      zoomControlledMarkers.forEach(entry => {
+        const el = entry.marker.getElement();
+        if (!el) return;
+        const show = currentZoom >= entry.minZoom && currentZoom <= entry.maxZoom;
+        el.style.display = show ? 'block':'none';
+      });
+    }
+
+    map.on('zoomend', updateMarkerVisibility);
+
+    fetch('toponym.json')
       .then(response => response.json())
       .then(data => {
         data.forEach(item => {
           const pos = xy(item.x, item.y);
-          addLabelDotMarker(pos, item.name_zh, item.description);
+          addLabelDotMarker(
+            pos,
+            item.name_zh,
+            item.description,
+            item.minZoom ?? 0,
+            item.maxZoom ?? 20
+          );
         });
+        updateMarkerVisibility();
       });
   </script>
 </body>
 </html>
-
