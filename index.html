@@ -19,23 +19,26 @@
             padding: 0;
             margin: 0;
         }
+
         html, body, #map {
             height: 100%;
             width: 100vw;
         }
 
         .text-label {
-            color: black;
-            font-weight: bold;
-            background-color: rgba(255,255,255,0.7);
-            padding: 2px 4px;
-            border-radius: 4px;
+            color: #444;
+            font-size: 13px;
+            font-weight: 500;
+            text-align: center;
+            background: none;
+            padding: 0;
+            border: none;
             white-space: nowrap;
-            pointer-events: none; /* 不擋滑鼠事件 */
+            pointer-events: none;
+            transform: translate(-50%, -100%);
         }
     </style>
 </head>
-
 <body>
     <div id="map"></div>
     <script>
@@ -64,7 +67,7 @@
             var textIcon = L.divIcon({
                 className: 'text-label',
                 html: `<div>${text}</div>`,
-                iconSize: [100, 20],
+                iconSize: null,
                 iconAnchor: [0, 0]
             });
             L.marker(position, { icon: textIcon }).addTo(map);
@@ -81,13 +84,6 @@
         addTextMarker(nanbatsu, '難波津島');
         addTextMarker(nanbawan, '難波万島');
         addTextMarker(tksy, '三洋島難波空港');
-
-        // 若未定義 sol、deneb，請移除或定義後再使用
-        // var travel = L.polyline([sol, deneb]).addTo(map);
     </script>
 </body>
 </html>
-
-
-
-
