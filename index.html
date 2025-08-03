@@ -83,22 +83,18 @@
         L.marker(position, { icon: icon }).addTo(map);
     }
 
-    // 
-    var zero = xy(0, 0);
-    var sanyoshima = xy(813, 1705 - 716);
-    var nanbatsu = xy(713, 1705 - 473);
-    var nanbawan = xy(953, 1705 - 1064);
-    var tksy = xy(1187, 1705 - 881);
-
-    // 
-    addLabelDotMarker(zero, '座標0');
-    addLabelDotMarker(sanyoshima, '三洋島');
-    addLabelDotMarker(nanbatsu, '難波津島');
-    addLabelDotMarker(nanbawan, '難波万島');
-    addLabelDotMarker(tksy, '三洋島難波空港');
+    fetch('toponym.json')
+      .then(response => response.json())
+      .then(data => {
+        data.forEach(item => {
+          const pos = xy(item.x, item.y);
+          addLabelDotMarker(pos, item.name);
+        });
+      });
 </script>
 </body>
 </html>
+
 
 
 
