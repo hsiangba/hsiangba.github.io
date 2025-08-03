@@ -159,7 +159,7 @@
 
     map.on('zoomend', updateMarkerVisibility);
 
-    fetch('https://hsiangba.github.io/toponym.json.json')
+    fetch('https://hsiangba.github.io/toponym.json')
       .then(response => response.json())
       .then(data => {
         data.forEach(item => {
@@ -177,6 +177,7 @@
   </script>
 </body>
 </html>
+
 
 
 
