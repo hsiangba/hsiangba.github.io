@@ -1,106 +1,157 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title>地圖檢視器</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <style>
-        html, body, #map {
-            height: 100%;
-            margin: 0;
-        }    
-            .leaflet-div-icon {
-                background: transparent;
-                border: none;
-        }
-        .label-dot-wrapper {
-            position: relative;
-            transform: translate(-50%, -50%);
-            pointer-events: auto;
-        }
-        .dot {
-            pointer-events: none;
-        }
-            white-space: nowrap;
-        }
+  <meta charset="utf-8" />
+  <title>地圖檢視器</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    html, body, #map {
+      height: 100%;
+      margin: 0;
+    }
 
-        .label-dot-wrapper .label-text {
-            font-size: 13px;
-            font-weight: 500;
-            color: #444;
-            text-align: center;
-            margin-bottom: 2px;
-            text-shadow:
-                -1px -1px 0 #fff,
-                 1px -1px 0 #fff,
-                -1px  1px 0 #fff,
-                 1px  1px 0 #fff;
-        }
+    .leaflet-div-icon {
+      background: transparent;
+      border: none;
+    }
 
-        .label-dot-wrapper .dot {
-            width: 6px;
-            height: 6px;
-            background-color: #666;
-            border: 2px solid white;
-            border-radius: 50%;
-            box-shadow: 0 0 2px #00000055;
-            margin: 0 auto;
-        }
-    </style>
+    .label-dot-wrapper {
+      position: relative;
+      transform: translate(-50%, -50%);
+      pointer-events: auto;
+      white-space: nowrap;
+      transition: transform 0.2s ease;
+    }
+
+    .label-dot-wrapper:hover {
+      transform: translate(-50%, -60%);
+    }
+
+    .label-text {
+      font-size: 13px;
+      font-weight: 500;
+      color: #444;
+      text-align: center;
+      margin-bottom: 2px;
+      text-shadow:
+        -1px -1px 0 #fff,
+         1px -1px 0 #fff,
+        -1px  1px 0 #fff,
+         1px  1px 0 #fff;
+      transition: color 0.2s ease;
+    }
+
+    .label-dot-wrapper:hover .label-text {
+      color: #d00;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      background-color: #666;
+      border: 2px solid white;
+      border-radius: 50%;
+      box-shadow: 0 0 2px #00000055;
+      margin: 0 auto;
+      pointer-events: none;
+    }
+
+    #info-panel {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 250px;
+      height: 100%;
+      background-color: white;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+      padding: 16px;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+
+    #info-panel.visible {
+      transform: translateX(0);
+    }
+
+    #info-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    #info-description {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  </style>
 </head>
 <body>
-<div id="map"></div>
-<script>
+  <div id="map"></div>
+  <div id="info-panel">
+    <div id="info-title">地名</div>
+    <div id="info-description">點擊圓點以查看詳細資訊</div>
+  </div>
+
+  <script>
     var yx = L.latLng;
-    var xy = function(x, y) {
-        if (Array.isArray(x)) return yx(x[1], x[0]);
-        return yx(y, x);
+    var xy = function (x, y) {
+      if (Array.isArray(x)) return yx(x[1], x[0]);
+      return yx(y, x);
     };
 
     var map = L.map('map', {
-        crs: L.CRS.Simple,
-        minZoom: -5
+      crs: L.CRS.Simple,
+      minZoom: -5
     });
 
     var imageBounds = [[0, 0], [1720, 1705]];
     var overlay = L.imageOverlay(
-        "https://raw.githubusercontent.com/hsiangba/hsiangba.github.io/54ec500771e054bfb04987ef6b5acce1c618a843/Frame%203.svg",
-        imageBounds
+      "https://raw.githubusercontent.com/hsiangba/hsiangba.github.io/54ec500771e054bfb04987ef6b5acce1c618a843/Frame%203.svg",
+      imageBounds
     ).addTo(map);
 
     map.fitBounds(imageBounds);
 
-    function addLabelDotMarker(position, label) {
-        var html = `
-            <div class="label-dot-wrapper">
-                <div class="label-text">${label}</div>
-                <div class="dot"></div>
-            </div>
-        `;
-        var icon = L.divIcon({
-            html: html,
-            iconSize: null,
-            iconAnchor: [0, 10] // 配合 transform: translate(-50%, -50%)，使「圓點中心」對準座標
-        });
-        L.marker(position, { icon: icon }).addTo(map);
+    function addLabelDotMarker(position, label, description) {
+      var html = `
+        <div class="label-dot-wrapper">
+          <div class="label-text">${label}</div>
+          <div class="dot"></div>
+        </div>
+      `;
+      var icon = L.divIcon({
+        html: html,
+        iconSize: null,
+        iconAnchor: [0, 0]
+      });
+      const marker = L.marker(position, { icon: icon }).addTo(map);
+      marker.on('click', function () {
+        showInfoPanel(label, description);
+      });
     }
 
+    function showInfoPanel(title, description) {
+      document.getElementById('info-title').textContent = title;
+      document.getElementById('info-description').textContent = description;
+      document.getElementById('info-panel').classList.add('visible');
+    }
+
+    map.on('click', function () {
+      document.getElementById('info-panel').classList.remove('visible');
+    });
+
+    // 載入 JSON 並建立地標
     fetch('toponym.json')
       .then(response => response.json())
       .then(data => {
         data.forEach(item => {
           const pos = xy(item.x, item.y);
-          addLabelDotMarker(pos, item.name);
+          addLabelDotMarker(pos, item.name_zh, item.description);
         });
       });
-</script>
+  </script>
 </body>
 </html>
-
-
-
-
-
-
