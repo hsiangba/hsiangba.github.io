@@ -78,7 +78,7 @@
         var icon = L.divIcon({
             html: html,
             iconSize: null,
-            iconAnchor: [0, 0] // 配合 transform: translate(-50%, -50%)，使「圓點中心」對準座標
+            iconAnchor: [0, 10] // 配合 transform: translate(-50%, -50%)，使「圓點中心」對準座標
         });
         L.marker(position, { icon: icon }).addTo(map);
     }
@@ -99,6 +99,7 @@
 </script>
 </body>
 </html>
+
 
 
 
