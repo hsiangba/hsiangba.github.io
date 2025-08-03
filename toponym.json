@@ -5,8 +5,8 @@
     "x": 813,
     "y": 989,
     "description": "東杏南方的一座島嶼。"
-    "minZoom":null,
-    "maxZoom":null
+    "minZoom":-5,
+    "maxZoom":10
   },
   {
     "name_zh": "難波津島",
@@ -14,7 +14,7 @@
     "x": 713,
     "y": 1232,
     "description": "就是個島礁。"
-    "minZoom":5,
+    "minZoom":-5,
     "maxZoom":9
   },
   {
@@ -23,7 +23,7 @@
     "x": 953,
     "y": 641,
     "description": "就是個島礁。"
-    "minZoom":5,
+    "minZoom":-5,
     "maxZoom":9
   },
   {
@@ -32,7 +32,7 @@
     "x": 1187,
     "y": 824,
     "description": "整個三洋群島唯一的機場，一天有兩班來回東杏本島的航班。"
-    "minZoom":5,
+    "minZoom":-5,
     "maxZoom":8
   }
 ]
