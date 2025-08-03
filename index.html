@@ -1,108 +1,97 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/hsiangba/hsiangba.github.io/refs/heads/main/homo.ico">
-    <link rel="icon" href="https://raw.githubusercontent.com/hsiangba/hsiangba.github.io/refs/heads/main/homo.ico" type="image/x-icon">
-    <title>地圖檢視器</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-          crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-            crossorigin=""></script>
-
+    <title>地圖檢視器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
-        body {
-            padding: 0;
-            margin: 0;
-        }
+    html, body, #map {
+        height: 100%;
+        margin: 0;
+    }
 
-        html, body, #map {
-            height: 100%;
-            width: 100vw;
-        }
+    .text-label {
+        position: relative;
+        color: #444;
+        font-size: 13px;
+        font-weight: 500;
+        text-align: center;
+        white-space: nowrap;
+        pointer-events: auto;
+        transform: translate(-50%, -6px);
+        text-shadow:
+            -1px -1px 0 #fff,
+             1px -1px 0 #fff,
+            -1px  1px 0 #fff,
+             1px  1px 0 #fff;
+        cursor: default;
+        transition: color 0.2s ease;
+    }
 
-        .text-label {
-            color: #444;
-            font-size: 13px;
-            font-weight: 500;
-            text-align: center;
-            white-space: nowrap;
-            pointer-events: auto;
-            transform: translate(-50%, -100%); /* 座標指向圓點中心 */
-            text-shadow:
-                -1px -1px 0 #fff,
-                 1px -1px 0 #fff,
-                -1px  1px 0 #fff,
-                 1px  1px 0 #fff;
-            cursor: default;
-        }
+    .text-label:hover {
+        color: #d00; /* 滑鼠移入時文字變紅 */
+    }
 
-        .text-label:hover {
-            color: #222;
-        }
-
-        .text-label::after {
-            content: '';
-            display: block;
-            width: 6px;
-            height: 6px;
-            margin: 4px auto 0 auto;
-            background-color: #666; /* 灰色圓點 */
-            border: 2px solid white;
-            border-radius: 50%;
-            box-shadow: 0 0 2px #00000055;
-        }
-    </style>
+    .text-label::after {
+        content: '';
+        display: block;
+        width: 6px;
+        height: 6px;
+        margin: 4px auto 0 auto;
+        background-color: #666; /* 圓點維持灰色 */
+        border: 2px solid white;
+        border-radius: 50%;
+        box-shadow: 0 0 2px #00000055;
+    }
+</style>
 </head>
 <body>
-    <div id="map"></div>
-    <script>
-        var yx = L.latLng;
-        var xy = function(x, y) {
-            if (Array.isArray(x)) return yx(x[1], x[0]);
-            return yx(y, x);
-        };
+<div id="map"></div>
+<script>
+    var yx = L.latLng;
+    var xy = function(x, y) {
+        if (Array.isArray(x)) return yx(x[1], x[0]);
+        return yx(y, x);
+    };
 
-        var imageBounds = [[0, 0], [1720, 1705]];
+    var map = L.map('map', {
+        crs: L.CRS.Simple,
+        minZoom: -5
+    });
 
-        var map = L.map('map', {
-            crs: L.CRS.Simple,
-            minZoom: -5
+    var imageBounds = [[0, 0], [1720, 1705]];
+    var overlay = L.imageOverlay(
+        "https://raw.githubusercontent.com/hsiangba/hsiangba.github.io/54ec500771e054bfb04987ef6b5acce1c618a843/Frame%203.svg",
+        imageBounds
+    ).addTo(map);
+
+    map.fitBounds(imageBounds);
+
+    function addTextMarker(position, text) {
+        var textIcon = L.divIcon({
+            className: 'text-label',
+            html: `<div>${text}</div>`,
+            iconSize: null,
+            iconAnchor: [0, 0]
         });
+        L.marker(position, { icon: textIcon }).addTo(map);
+    }
 
-        var overlay = L.imageOverlay(
-            "https://raw.githubusercontent.com/hsiangba/hsiangba.github.io/54ec500771e054bfb04987ef6b5acce1c618a843/Frame%203.svg",
-            imageBounds,
-            { attribution: "<a href='https://raw.githubusercontent.com/hsiangba/hsiangba.github.io/54ec500771e054bfb04987ef6b5acce1c618a843/Frame%203.svg'>測試用的地圖檔案</a>" }
-        ).addTo(map);
+    // 座標定義
+    var zero = xy(0, 0);
+    var sanyoshima = xy(813, 1705 - 716);
+    var nanbatsu = xy(713, 1705 - 473);
+    var nanbawan = xy(953, 1705 - 1064);
+    var tksy = xy(1187, 1705 - 881);
 
-        map.fitBounds(imageBounds);
-
-        function addTextMarker(position, text) {
-            var textIcon = L.divIcon({
-                className: 'text-label',
-                html: `<div>${text}</div>`,
-                iconSize: null,
-                iconAnchor: [0, 0]  // 座標從左上，但 transform 修正為圓點中心
-            });
-            L.marker(position, { icon: textIcon }).addTo(map);
-        }
-
-        var zero = xy(0, 0);
-        var sanyoshima = xy(813, 1705 - 716);
-        var nanbatsu = xy(713, 1705 - 473);
-        var nanbawan = xy(953, 1705 - 1064);
-        var tksy = xy(1187, 1705 - 881);
-
-        addTextMarker(zero, '座標0');
-        addTextMarker(sanyoshima, '三洋島');
-        addTextMarker(nanbatsu, '難波津島');
-        addTextMarker(nanbawan, '難波万島');
-        addTextMarker(tksy, '三洋島難波空港');
-    </script>
+    // 加入標籤
+    addTextMarker(zero, '座標0');
+    addTextMarker(sanyoshima, '三洋島');
+    addTextMarker(nanbatsu, '難波津島');
+    addTextMarker(nanbawan, '難波万島');
+    addTextMarker(tksy, '三洋島難波空港');
+</script>
 </body>
 </html>
