@@ -7,45 +7,21 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
-    html, body, #map {
-        height: 100%;
-        margin: 0;
-    }
+        html, body, #map {
+            height: 100%;
+            margin: 0;
+        }
 
-    .text-label {
-        position: relative;
-        color: #444;
-        font-size: 13px;
-        font-weight: 500;
-        text-align: center;
-        white-space: nowrap;
-        pointer-events: auto;
-        transform: translate(0%, 0px);
-        text-shadow:
-            -1px -1px 0 #fff,
-             1px -1px 0 #fff,
-            -1px  1px 0 #fff,
-             1px  1px 0 #fff;
-        cursor: default;
-        transition: color 0.2s ease;
-    }
-
-    .text-label:hover {
-        color: #d00; /* 滑鼠移入時文字變紅 */
-    }
-
-    .text-label::after {
-        content: '';
-        display: block;
-        width: 6px;
-        height: 6px;
-        margin: 4px auto 0 auto;
-        background-color: #666; /* 圓點維持灰色 */
-        border: 2px solid white;
-        border-radius: 50%;
-        box-shadow: 0 0 2px #00000055;
-    }
-</style>
+        .dot-only {
+            width: 6px;
+            height: 6px;
+            background-color: #666;
+            border: 2px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 2px #00000055;
+            transform: translate(-50%, -50%);
+        }
+    </style>
 </head>
 <body>
 <div id="map"></div>
@@ -69,31 +45,29 @@
 
     map.fitBounds(imageBounds);
 
-    function addTextMarker(position, text) {
-        var textIcon = L.divIcon({
-            className: 'text-label',
-            html: `<div>${text}</div>`,
+    function addDotMarker(position) {
+        var dotIcon = L.divIcon({
+            className: '',
+            html: `<div class="dot-only"></div>`,
             iconSize: null,
-            iconAnchor: [0, 0]
+            iconAnchor: [0, 0]  // 配合 translate(-50%, -50%) 使圓點中心對齊座標
         });
-        L.marker(position, { icon: textIcon }).addTo(map);
+        L.marker(position, { icon: dotIcon }).addTo(map);
     }
 
-    // 座標定義
+    // 
     var zero = xy(0, 0);
-    var sanyoshima = xy(813, 1705-716);
-    var nanbatsu = xy(713, 1705-473);
-    var nanbawan = xy(953, 1705-1064);
-    var tksy = xy(1187, 1705-881);
+    var sanyoshima = xy(813, 1705 - 716);
+    var nanbatsu = xy(713, 1705 - 473);
+    var nanbawan = xy(953, 1705 - 1064);
+    var tksy = xy(1187, 1705 - 881);
 
-    // 加入標籤
-    addTextMarker(zero, '座標0');
-    addTextMarker(sanyoshima, '三洋島');
-    addTextMarker(nanbatsu, '難波津島');
-    addTextMarker(nanbawan, '難波万島');
-    addTextMarker(tksy, '三洋島難波空港');
+    // 
+    addDotMarker(zero);
+    addDotMarker(sanyoshima);
+    addDotMarker(nanbatsu);
+    addDotMarker(nanbawan);
+    addDotMarker(tksy);
 </script>
 </body>
 </html>
-
-
