@@ -54,17 +54,38 @@
         // 自動調整地圖視角到圖片邊界
         map.fitBounds(imageBounds);
         // 標點測試
-        var zero=xy(0,0)
-        var sanyoshima=xy(813,1705-716);
-        var nanbatsu=xy(713,1705-473);
-        var nanbawan=xy(953,1705-1064);
-        var tksy=xy(1187,1705-881);
+function addTextMarker(position, text) {
+    var textIcon = L.divIcon({
+        className: 'text-label', // 自訂 class 用於樣式
+        html: `<div>${text}</div>`,
+        iconSize: [100, 20],  // 大小可依需求調整
+        iconAnchor: [0, 0]    // 控制文字對齊方式
+    });
+    L.marker(position, { icon: textIcon }).addTo(map);
+}
+
+        // 原始座標
+        var zero = xy(0, 0);
+        var sanyoshima = xy(813, 1705 - 716);
+        var nanbatsu = xy(713, 1705 - 473);
+        var nanbawan = xy(953, 1705 - 1064);
+        var tksy = xy(1187, 1705 - 881);
+
+        // 使用純文字標註
         addTextMarker(zero, '座標0');
         addTextMarker(sanyoshima, '三洋島');
         addTextMarker(nanbatsu, '難波津島');
         addTextMarker(nanbawan, '難波万島');
         addTextMarker(tksy, '三洋島難波空港');
-
+        .text-label {
+    color: black;
+    font-weight: bold;
+    background-color: rgba(255,255,255,0.7);
+    padding: 2px 4px;
+    border-radius: 4px;
+    white-space: nowrap;
+    pointer-events: none; /* 不擋滑鼠事件 */
+}
 var travel = L.polyline([sol, deneb]).addTo(map);
         
         
@@ -72,5 +93,6 @@ var travel = L.polyline([sol, deneb]).addTo(map);
     </script>
 </body>
 </html>
+
 
 
