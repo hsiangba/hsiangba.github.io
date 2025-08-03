@@ -10,8 +10,11 @@
         html, body, #map {
             height: 100%;
             margin: 0;
+        }    
+            .leaflet-div-icon {
+                background: transparent;
+                border: none;
         }
-
         .label-dot-wrapper {
             position: relative;
             transform: translate(-50%, -50%);
@@ -80,14 +83,14 @@
         L.marker(position, { icon: icon }).addTo(map);
     }
 
-    // ✅ 這些是你原本的座標
+    // 
     var zero = xy(0, 0);
     var sanyoshima = xy(813, 1705 - 716);
     var nanbatsu = xy(713, 1705 - 473);
     var nanbawan = xy(953, 1705 - 1064);
     var tksy = xy(1187, 1705 - 881);
 
-    // ✅ 顯示圓點與地名（圓點為中心）
+    // 
     addLabelDotMarker(zero, '座標0');
     addLabelDotMarker(sanyoshima, '三洋島');
     addLabelDotMarker(nanbatsu, '難波津島');
@@ -96,5 +99,6 @@
 </script>
 </body>
 </html>
+
 
 
