@@ -3,7 +3,7 @@
     "name_zh": "東杏櫻田國際機場",
     "name_en": "Toukou Sakurata International Airport",
     "x": 3665,
-    "y": 4631,
+    "y": 3561,
     "description": "作為東杏玄關的主要機場，是國內外航線中樞，僅需30分鐘即可抵達東杏都心，聯外交通相當方便，同時也是東杏航空的樞紐機場。",
     "minZoom": 0,
     "maxZoom": 20
@@ -12,7 +12,7 @@
     "name_zh": "梨花國際機場",
     "name_en": "Rikka International Airport",
     "x": 1802,
-    "y": 4193,
+    "y": 3999,
     "description": "東杏西部城市的主要機場，規模不大但相當繁忙，坐落在市區中的機場。",
     "minZoom": 0,
     "maxZoom": 20
@@ -21,7 +21,7 @@
     "name_zh": "東杏都",
     "name_en": "Toukou Prefecture",
     "x": 4016,
-    "y": 4886,
+    "y": 3306,
     "description": "位於東杏中部的都市，為東杏國的政治、交通與經濟中心，同時也是全國最大城市。人口共514萬人，全國人口密度與數量最高之城市。以日沼前市區為中心沿著鐵路路網向外發散，形成大東杏都市圈。",
     "minZoom": -5,
     "maxZoom": 0
@@ -30,11 +30,9 @@
     "name_zh": "梨花市",
     "name_en": "Rikka City",
     "x": 1923,
-    "y": 4240,
+    "y": 3952,
     "description": "是位於東杏西北部、梨花縣中部的都市，為梨花縣首府，同時為三大政令指定都市(矩海，青沙，梨花)之一。全市人口約114萬，居全國第三。",
     "minZoom": -5,
     "maxZoom": 0
   }
-]
-
 ]
