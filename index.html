@@ -176,7 +176,7 @@
       .then(response => response.json())
       .then(data => {
         data.forEach(item => {
-          const pos = xy(item.x, item.y);
+          const pos = xy(item.x, item.8192-y);
           addLabelDotMarker(
             pos,
             item.name_zh,
@@ -190,5 +190,6 @@
   </script>
 </body>
 </html>
+
 
 
