@@ -1,6 +1,6 @@
 [
   {
-    "name_zh": "東杏櫻田國際機場",
+    "name_zh": "櫻田機場",
     "name_en": "Toukou Sakurata International Airport",
     "x": 3665,
     "y": 3561,
@@ -9,7 +9,7 @@
     "maxZoom": 20
   },
   {
-    "name_zh": "梨花國際機場",
+    "name_zh": "梨花機場",
     "name_en": "Rikka International Airport",
     "x": 1802,
     "y": 3999,
@@ -18,7 +18,7 @@
     "maxZoom": 20
   },
   {
-    "name_zh": "東杏都",
+    "name_zh": "東杏",
     "name_en": "Toukou Prefecture",
     "x": 4016,
     "y": 3306,
@@ -27,7 +27,7 @@
     "maxZoom": 0
   },
   {
-    "name_zh": "梨花市",
+    "name_zh": "梨花",
     "name_en": "Rikka City",
     "x": 1923,
     "y": 3952,
