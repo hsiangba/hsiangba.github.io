@@ -34,5 +34,68 @@
     "description": "是位於東杏西北部、梨花縣中部的都市，為梨花縣首府，同時為三大政令指定都市(矩海，青沙，梨花)之一。全市人口約114萬，居全國第三。",
     "minZoom": -5,
     "maxZoom": 0
-  }
+  },
+  {
+      "name_zh": "御八瀨市",
+    "name_en": "Oyase City",
+    "x": 3834,
+    "y": 3048,
+    "description": "位於東杏都西部的城市",
+    "minZoom": 0,
+    "maxZoom": 5
+  },
+  {
+      "name_zh": "日沼前區",
+    "name_en": "Hinomazen District",
+    "x": 4113,
+    "y": 3048,
+    "description": "東杏都六區之一，東杏大學與各政府機關坐落於此",
+    "minZoom": 0,
+    "maxZoom": 5
+  },
+  {
+      "name_zh": "悠馬區",
+    "name_en": "Yumma District",
+    "x": 4065,
+    "y": 3166,
+    "description": "東杏都六區之一，近年來相當熱鬧的新式商圈區域",
+    "minZoom": 0,
+    "maxZoom": 5
+  },
+  {
+      "name_zh": "善見區",
+    "name_en": "Zenken District",
+    "x": 4113,
+    "y": 3266,
+    "description": "東杏都六區之一，最早開發的傳統住宅商圈之一",
+    "minZoom": 0,
+    "maxZoom": 5
+  },
+  {
+      "name_zh": "空石區",
+    "name_en": "Kiraishi District",
+    "x": 4116,
+    "y": 4093,
+    "description": "東杏都六區之一，知名的綠化都市",
+    "minZoom": 0,
+    "maxZoom": 5
+  },
+  {
+      "name_zh": "櫻島區",
+    "name_en": "Sakurajima District",
+    "x": 3978,
+    "y": 3623,
+    "description": "東杏都六區之一，近年逐漸開始大興土木",
+    "minZoom": 0,
+    "maxZoom": 5
+  },
+  {
+      "name_zh": "七川區",
+    "name_en": "Hinomazen District",
+    "x": 4246,
+    "y": 3222,
+    "description": "東杏都六區之一，擁有知名的七川河岸公園區",
+    "minZoom": 0,
+    "maxZoom": 5
+  },
 ]
