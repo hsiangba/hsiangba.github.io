@@ -36,7 +36,7 @@
     "maxZoom": 0
   },
   {
-      "name_zh": "御八瀨市",
+    "name_zh": "御八瀨市",
     "name_en": "Oyase City",
     "x": 3834,
     "y": 3048,
@@ -45,7 +45,7 @@
     "maxZoom": 5
   },
   {
-      "name_zh": "日沼前區",
+    "name_zh": "日沼前區",
     "name_en": "Hinomazen District",
     "x": 4113,
     "y": 3048,
@@ -54,7 +54,7 @@
     "maxZoom": 5
   },
   {
-      "name_zh": "悠馬區",
+    "name_zh": "悠馬區",
     "name_en": "Yumma District",
     "x": 4065,
     "y": 3166,
@@ -63,7 +63,7 @@
     "maxZoom": 5
   },
   {
-      "name_zh": "善見區",
+    "name_zh": "善見區",
     "name_en": "Zenken District",
     "x": 4113,
     "y": 3266,
@@ -72,7 +72,7 @@
     "maxZoom": 5
   },
   {
-      "name_zh": "空石區",
+    "name_zh": "空石區",
     "name_en": "Kiraishi District",
     "x": 4116,
     "y": 4093,
@@ -81,7 +81,7 @@
     "maxZoom": 5
   },
   {
-      "name_zh": "櫻島區",
+    "name_zh": "櫻島區",
     "name_en": "Sakurajima District",
     "x": 3978,
     "y": 3623,
@@ -91,7 +91,7 @@
   },
   {
       "name_zh": "七川區",
-    "name_en": "Hinomazen District",
+    "name_en": "Nanakawa District",
     "x": 4246,
     "y": 3222,
     "description": "東杏都六區之一，擁有知名的七川河岸公園區",
